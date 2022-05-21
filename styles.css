@@ -123,8 +123,16 @@ button:disabled {
 	color: red;
 }
 
+.log--special-damage {
+	color: #4b0510;
+}
+
 .log--heal {
 	color: green;
+}
+
+.log--surrender {
+	color: #3f3f3f;
 }
 
 [v-cloak] {

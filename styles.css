@@ -13,7 +13,12 @@ body {
 header {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 	padding: 0.5rem;
-	background-color: #880017;
+	background: linear-gradient(
+		90deg,
+		rgba(168, 8, 8, 1) 0%,
+		rgba(109, 2, 20, 1) 49%,
+		rgba(255, 42, 42, 1) 100%
+	);
 	color: white;
 	text-align: center;
 	margin-bottom: 2rem;
@@ -71,8 +76,6 @@ section {
 
 button {
 	font: inherit;
-	border: 1px solid #88005b;
-	background-color: #88005b;
 	color: white;
 	padding: 1rem 2rem;
 	border-radius: 12px;
@@ -82,18 +85,19 @@ button {
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
 
-button:focus {
-	outline: none;
-}
-
 button:hover,
 button:active {
-	background-color: #af0a78;
-	border-color: #af0a78;
-	box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
+	box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.26);
+	transition: all 0.4s;
 }
 
-button:disabled {
+button:focus {
+	outline: none;
+	box-shadow: 2px 2px 2px 2px rgb(20, 20, 20);
+}
+
+button:disabled,
+button:disabled:hover {
 	background-color: #ccc;
 	border-color: #ccc;
 	box-shadow: none;
@@ -101,10 +105,74 @@ button:disabled {
 	cursor: not-allowed;
 }
 
+.special-attack {
+	border: 1px solid #88005b;
+	background-color: #88005b;
+}
+
+.special-attack:hover,
+.special-attack:active {
+	background-color: #af0a78;
+	border-color: #af0a78;
+}
+
+.heal {
+	border: 1px solid #087756;
+	background-color: #03971c;
+}
+
+.heal:hover,
+.heal:active {
+	background-color: #07c727;
+	border-color: #06996d;
+}
+
+.attack {
+	border: 1px solid #640303;
+	background-color: rgb(160, 8, 8);
+}
+
+.attack:hover,
+.attack:active {
+	border: 1px solid #750303;
+	background-color: rgb(219, 6, 6);
+}
+
+.surrender {
+	border: 1px solid #0f0f0f;
+	background-color: rgb(20, 20, 20);
+}
+
+.surrender:hover,
+.surrender:active {
+	border: 1px solid #141414;
+	background-color: rgb(32, 32, 32);
+}
+
+.new {
+	border: 1px solid rgb(212, 122, 4);
+	background-color: rgb(230, 159, 6);
+}
+
+.new:hover,
+.new:active {
+	border: 1px solid rgb(243, 139, 3);
+	background-color: rgb(255, 187, 0);
+}
+
+#log {
+	background-color: rgb(240, 240, 252);
+}
+
 #log ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	font-size: 18px;
+}
+
+#log h2 {
+	font-size: 26px;
 }
 
 #log li {
@@ -133,6 +201,10 @@ button:disabled {
 
 .log--surrender {
 	color: #3f3f3f;
+}
+
+.game-result {
+	background-color: rgb(217, 217, 252);
 }
 
 [v-cloak] {

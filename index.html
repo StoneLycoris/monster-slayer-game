@@ -27,16 +27,16 @@
   <div v-cloak id="game">
     <section id="monster" class="container">
       <h2>Monster Health</h2>
-      <div class="healthbar" v-cloak>
-        <p class="healthbar__number">{{monsterHealth}}</p>
+      <div class="healthbar">
+        <p class="healthbar__number">{{healthMonster}}</p>
         <div class="healthbar__value" :style="monsterBarStyles"></div>
       </div>
     </section>
 
     <section id="player" class="container">
       <h2>Your Health</h2>
-      <div class="healthbar" v-cloak>
-        <p class="healthbar__number">{{playerHealth}}</p>
+      <div class="healthbar">
+        <p class="healthbar__number">{{healthPlayer}}</p>
         <div class="healthbar__value" :style="playerBarStyles"></div>
       </div>
     </section>
@@ -51,37 +51,35 @@
 
     <section id="controls" v-else>
       <button class="attack" @click="attackMonster">ATTACK</button>
-      <button class="special-attack" :disabled="mayUseSpecialAttack" @click="specialAttackMonster">SPECIAL
+      <button class="special-attack" :disabled="isPossibleSpecialAttack" @click="specialAttackMonster">SPECIAL
         ATTACK</button>
-      <button class="heal" :disabled="mayUseHeal" @click="healPlayer">HEAL</button>
+      <button class="heal" :disabled="isPossibleHeal" @click="healPlayer">HEAL</button>
       <button class="surrender" @click="surrender">SURRENDER</button>
     </section>
 
     <section id="log" class="container">
       <h2>Battle Log</h2>
-      <ul v-cloak>
-        <li v-for="logMessage in logMessages">
+      <ul>
+        <li v-for="logMessage in logMessages" :key="logMessage">
           <span
-            :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}">{{logMessage.actionBy === 'player' ? 'Player' : 'Monster'}}</span>
+            :class="{'log--player': logMessage.character === 'player', 'log--monster': logMessage.character === 'monster'}">{{logMessage.character === 'player' ? 'Player' : 'Monster'}}</span>
 
-          <span v-if="logMessage.actionType === 'heal'"> heals himself for <span
-              class="log--heal">{{logMessage.actionValue}}</span> HP.</span>
+          <span v-if="logMessage.action === 'heal'"> heals himself for <span
+              class="log--heal">{{logMessage.value}}</span> HP.</span>
 
-          <span v-else-if="logMessage.actionType === 'special-attack'"> uses a special attack and deals <span
-              class="log--special-damage"> {{logMessage.actionValue}}</span>
+          <span v-else-if="logMessage.action === 'special-attack'"> uses a special attack and deals <span
+              class="log--special-damage"> {{logMessage.value}}</span>
             damage.</span>
 
-          <span v-else-if="logMessage.actionType === 'attack'"> attacks and deals <span class="log--damage">
-              {{logMessage.actionValue}}</span> damage.</span>
+          <span v-else-if="logMessage.action === 'attack'"> attacks and deals <span class="log--damage">
+              {{logMessage.value}}</span> damage.</span>
 
           <span class="log--surrender" v-else> surrenders.</span>
-
-
-
 
         </li>
       </ul>
     </section>
+
   </div>
 </body>
 
